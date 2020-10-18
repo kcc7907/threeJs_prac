@@ -23,11 +23,12 @@ function init() {
     const near = .1;
     const far = 1000;
     camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.set(0.5, 0.2, 10);
+    camera.position.set(-10, 3, 0);
+    camera.lookAt(scene.position);
 
     //燈光
-    var light = new THREE.PointLight(0xffffff, 1, 500);
-    light.position.set(10, 0, 25);
+    var light = new THREE.PointLight(0xffffff, 3, 1000);
+    light.position.set(-30, 10, -10);
     scene.add(light);
 
     //渲染
@@ -42,11 +43,14 @@ function init() {
     //載入外部模型
     var loader2 = new ColladaLoader(); //JSM的用法前面不用加THREE  不要問我什麼事JSM  我也不知道呵呵
     // var loader2 = new THREE.ColladaLoader();  一般的JS檔用這打法
-    loader2.load('./3d/20201018.dae', function (collada) {
+    loader2.load('./3d/sofa-twocolor.dae', function (collada) {
         scene.add(collada.scene);
         house = collada.scene.children[0];
         animate()
     });
+
+    var axesHelper = new THREE.AxesHelper(5);
+    scene.add(axesHelper);
 }
 
 // let loader = new GLTFLoader();

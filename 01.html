@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>載入模型</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+            overflow: hidden;
+        }
+
+        .scene,
+        canvas {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scene"></div>
+
+    <script src="./node_modules/three/build/three.js"></script>
+    <!-- three.js整包檔案沒上傳  沒有的話上官網載 : https://threejs.org/docs/index.html#manual/en/introduction/Installation -->
+
+    <!-- <script src="./node_modules/three/examples/js/loaders/ColladaLoader.js"></script> -->
+    <!-- 也能用這個  不過官網有提示現在不用這種方式  這檔案會在今年11月刪除 -->
+
+    <script type="module" src="01.js"></script>
+    <!-- 這裡面有用到ES6載入模型的語法(import)  要打上:type="module" 預設是:type= text/javascript-->
+</body>
+
+</html>

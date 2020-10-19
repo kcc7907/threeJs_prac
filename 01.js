@@ -5,11 +5,17 @@
 
 
 import {
+    ColladaExporter
+}
+from "/node_modules/three/examples/jsm/exporters/ColladaExporter.js";
+
+import {
     ColladaLoader
 } from "/node_modules/three/examples/jsm/loaders/ColladaLoader.js";
 //這邊是載入dae檔  用的是內附的ColladaLoader  注意是用到JSM資料夾下的
 
 let container, camera, renderer, scene, house;
+var dae, skin;
 
 function init() {
     container = document.querySelector('.scene');
@@ -40,20 +46,26 @@ function init() {
     renderer.setPixelRatio(window.devicePixelRatio);
     container.appendChild(renderer.domElement);
 
+
     //載入外部模型
-    var loader2 = new ColladaLoader(); //JSM的用法前面不用加THREE  不要問我什麼事JSM  我也不知道呵呵
+    var loader = new ColladaLoader(); //JSM的用法前面不用加THREE  不要問我什麼事JSM  我也不知道呵呵
     // var loader2 = new THREE.ColladaLoader();  一般的JS檔用這打法
-    loader2.load('./3d/sofa-twocolor.dae', function (collada) {
+    loader.load('./3d/sofa.dae', function (collada) {
         scene.add(collada.scene);
         house = collada.scene.children[0];
-        animate()
+        // house = new THREE.MeshBasicMaterial({
+        //     map: texture
+        // });
+        animate();
     });
+
+
 
     var axesHelper = new THREE.AxesHelper(5);
     scene.add(axesHelper);
 }
 
-// let loader = new GLTFLoader();
+// var loader = new GLTFLoader();
 // loader.load("./3d/scene.gltf", function (gltf) {
 //     scene.add(gltf.scene);
 //     house = gltf.scene.children[0];
@@ -61,8 +73,10 @@ function init() {
 // });
 
 function animate() {
-    requestAnimationFrame(animate);
-    house.rotation.z += 0.02;
+    // requestAnimationFrame(animate);
+    // house.rotation.z += 0.02;
+    // house.rotateZ(0.02);
     renderer.render(scene, camera);
+    // console.log(house);
 }
 init();

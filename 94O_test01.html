@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+    <style>
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        section img {
+            display: block;
+            max-width: 100%;
+            margin: auto;
+            /* width: 1000px; */
+        }
+
+        p {
+            font-size: 20px;
+            margin: 20px;
+            cursor: pointer;
+        }
+
+        .boj,
+        .obj img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+        }
+
+        .obj2 img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+        }
+
+        .obj3 img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+        }
+
+        .out {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <img src="./img/new.png" draggable=" false">
+    </section>
+    <div class="out">
+        <p>衣櫃</p>
+        <p>地板</p>
+        <p>衣櫃2</p>
+    </div>
+    <div class="obj"><img src="" draggable="false"></div>
+    <div class="obj2"><img src="" draggable="false"></div>
+    <div class="obj3"><img src="" draggable="false"></div>
+    <script>
+        let text = document.querySelectorAll('p');
+        let img = document.querySelectorAll('.obj img')[0];
+        let img2 = document.querySelectorAll('.obj2 img')[0];
+        let img3 = document.querySelectorAll('.obj3 img')[0];
+        let obj1 = {
+            floor: 'img/newbed.png',
+            cloth: 'img/wardrobe2.5.png',
+            box: 'img/box2.5.png'
+        }
+        text[0].addEventListener('click', () => {
+            img.src = obj1.cloth;
+        });
+        text[1].addEventListener('click', () => {
+            img2.src = obj1.floor;
+        });
+        text[2].addEventListener('click', () => {
+            img3.src = obj1.box;
+        });
+
+        function move(e) {
+            if (e.pageX) {
+                x = e.pageX;
+                y = e.pageY;
+            }
+            if (obj) {
+                obj.style.left = (x - prev_x) + 'px';
+                obj.style.top = (y - prev_y) + 'px';
+            }
+        }
+        function drop() {
+            obj = false;
+        }
+        var obj, x, y, prev_x, prev_y;
+
+        function drag(e) {
+            obj = e.target;
+            prev_x = x - obj.offsetLeft;
+            prev_y = y - obj.offsetTop;
+        }
+
+        function zoom(e) {
+            let imgWidth = parseInt(getComputedStyle(img).getPropertyValue('width'));
+
+            if (event.wheelDelta <= -120) {
+                e.preventDefault();
+                img.style.width = imgWidth - 10 + 'px';
+            } else if (event.wheelDelta >= 120) {
+                e.preventDefault();
+                img.style.width = imgWidth + 10 + 'px';
+            };
+        }
+        function zoom2(e) {
+            let img2Width = parseInt(getComputedStyle(img2).getPropertyValue('width'));
+            if (event.wheelDelta <= -120) {
+                e.preventDefault();
+                img2.style.width = img2Width - 10 + 'px';
+            } else if (event.wheelDelta >= 120) {
+                e.preventDefault();
+                img2.style.width = img2Width + 10 + 'px';
+            };
+        }
+        function zoom3(e) {
+            let img3Width = parseInt(getComputedStyle(img3).getPropertyValue('width'));
+            if (event.wheelDelta <= -120) {
+                e.preventDefault();
+                img3.style.width = img3Width - 10 + 'px';
+            } else if (event.wheelDelta >= 120) {
+                e.preventDefault();
+                img3.style.width = img3Width + 10 + 'px';
+            };
+        }
+        img.onmousedown = drag;
+        img.onmousewheel = zoom;
+        img2.onmousedown = drag;
+        img2.onmousewheel = zoom2;
+        img3.onmousedown = drag;
+        img3.onmousewheel = zoom3;
+        document.onmousemove = move;
+        document.onmouseup = drop;
+
+
+    </script>
+</body>
+
+</html>

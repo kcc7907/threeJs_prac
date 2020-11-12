@@ -3,12 +3,6 @@
 // }
 // from "/node_modules/three/examples/jsm/loaders/GLTFLoader.js";
 
-
-import {
-    ColladaExporter
-}
-    from "/node_modules/three/examples/jsm/exporters/ColladaExporter.js";
-
 import {
     ColladaLoader
 } from "/node_modules/three/examples/jsm/loaders/ColladaLoader.js";
@@ -51,7 +45,7 @@ function init() {
     //載入外部模型
     var loader = new ColladaLoader(); //JSM的用法前面不用加THREE  不要問我什麼事JSM  我也不知道呵呵
     // var loader2 = new THREE.ColladaLoader();  一般的JS檔用這打法
-    loader.load('./3d/sofa-twocolor.dae', function (collada) {
+    loader.load('./3d/sofa.dae', function (collada) {
         house = collada.scene.children[0];
         house.position.set(-30, 10, 0);
         // house = new THREE.MeshBasicMaterial({

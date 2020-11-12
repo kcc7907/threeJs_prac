@@ -7,7 +7,7 @@ import {
 }
     from "/node_modules/three/examples/jsm/loaders/GLTFLoader.js";
 
-import { OrbitControls } from './node_modules/three/examples/jsm/controls/OrbitControls.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 let container, camera, renderer, scene, house, house1, texture, model;
 
